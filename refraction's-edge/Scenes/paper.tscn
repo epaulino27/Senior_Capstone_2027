@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnuecq6ug4mcf"]
+
+[ext_resource type="Script" uid="uid://duwahr6plwiyw" path="res://Scripts/paper.gd" id="1_3e1dg"]
+[ext_resource type="Resource" uid="uid://bmev8ycelvb7f" path="res://Inventory/items/paper.tres" id="2_v68uc"]
+[ext_resource type="Texture2D" uid="uid://bl6igi42tof7j" path="res://Assets/Lvl 1/fallen_paper_bw.png" id="3_pd2jm"]
+[ext_resource type="Texture2D" uid="uid://crf4l0aybyxf8" path="res://Assets/message.png" id="4_jx8js"]
+[ext_resource type="FontVariation" uid="uid://ddc5nqyqc0km0" path="res://Assets/font.tres" id="5_l40sm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v68uc"]
+size = Vector2(141, 64)
+
+[sub_resource type="GDScript" id="GDScript_aqslg"]
+
+[node name="Paper" type="StaticBody2D" node_paths=PackedStringArray("message")]
+script = ExtResource("1_3e1dg")
+item = ExtResource("2_v68uc")
+message = NodePath("message")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_pd2jm")
+
+[node name="interactable_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_v68uc")
+
+[node name="message" type="Sprite2D" parent="."]
+position = Vector2(3, -243)
+scale = Vector2(0.78, 0.737024)
+texture = ExtResource("4_jx8js")
+
+[node name="text_body" type="RichTextLabel" parent="message"]
+offset_left = -359.0
+offset_top = -135.0
+offset_right = 362.0
+offset_bottom = 116.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_l40sm")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "The message reads:
+\"Pease help! Meet on rooof.
+											- Rolly Polly \"
+
+The handwriting seems to indicate it was written by a child. Take note?"
+scroll_active = false
+tab_size = 3
+shortcut_keys_enabled = false
+script = SubResource("GDScript_aqslg")
+
+[node name="title" type="RichTextLabel" parent="message"]
+offset_left = -348.0
+offset_top = -209.0
+offset_right = 280.0
+offset_bottom = -160.0
+theme_override_fonts/normal_font = ExtResource("5_l40sm")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "You've picked up a message."
+scroll_active = false
+tab_size = 3
+shortcut_keys_enabled = false
+script = SubResource("GDScript_aqslg")
+
+[node name="close" type="Button" parent="message"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 293.0
+offset_top = -212.0
+offset_right = 358.0
+offset_bottom = -155.0
+
+[node name="yes" type="Button" parent="message"]
+offset_left = -329.0
+offset_top = 131.0
+offset_right = -91.0
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 25
+text = "Yes"
+
+[node name="no" type="Button" parent="message"]
+offset_left = 22.0
+offset_top = 129.0
+offset_right = 262.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 25
+text = "No"
+
+[connection signal="body_entered" from="interactable_area" to="." method="_on_interactable_area_body_entered"]
+[connection signal="pressed" from="message/close" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="message/yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="message/no" to="." method="_on_no_pressed"]

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://ddc5nqyqc0km0"]
+
+[ext_resource type="FontFile" uid="uid://d3fae1ojp0wae" path="res://General Assets/vertopal.com_sserife.ttf" id="1_pbujy"]
+
+[resource]
+base_font = ExtResource("1_pbujy")

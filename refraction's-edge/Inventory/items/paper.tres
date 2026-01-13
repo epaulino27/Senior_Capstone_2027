@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://bmev8ycelvb7f"]
+
+[ext_resource type="Script" uid="uid://bmtdu2760xge8" path="res://Inventory/inv_item.gd" id="1_glbdg"]
+[ext_resource type="Texture2D" uid="uid://bl6igi42tof7j" path="res://Assets/Lvl 1/fallen_paper_bw.png" id="2_glbdg"]
+
+[resource]
+script = ExtResource("1_glbdg")
+name = "paper"
+texture = ExtResource("2_glbdg")
+metadata/_custom_type_script = "uid://bmtdu2760xge8"
