@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfwe5q83svpw0"]
+
+[ext_resource type="Script" uid="uid://jkdkwv0xb6ot" path="res://Save System/checkpoint.gd" id="1_s2agh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76twa"]
+size = Vector2(117.647, 58.5938)
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(0.4, 1)
+script = ExtResource("1_s2agh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-5, 3.8147e-06)
+scale = Vector2(4.165, 5.01333)
+shape = SubResource("RectangleShape2D_76twa")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -252.5
+offset_top = -144.0
+offset_right = -212.5
+offset_bottom = -104.0
+scale = Vector2(12.2856, 7.27447)
+color = Color(1, 1, 0.368627, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -155.0
+offset_top = -121.0
+offset_right = -77.0
+offset_bottom = -72.0
+scale = Vector2(4.44063, 1.0625)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Save Here"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

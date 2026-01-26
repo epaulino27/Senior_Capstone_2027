@@ -1,0 +1,161 @@
+[gd_scene load_steps=15 format=3 uid="uid://bdrsxxbo1utjn"]
+
+[ext_resource type="Script" uid="uid://bmtdu2760xge8" path="res://Inventory/inv_item.gd" id="2_3mewk"]
+[ext_resource type="Shader" uid="uid://w0o3rdpk173x" path="res://Scripts/lvl_1_npc.gdshader" id="3_3d2lw"]
+[ext_resource type="Texture2D" uid="uid://bxktjqikl3lcg" path="res://Assets/Lvl 1/Rolly Polly/inv_image.png" id="3_8avh3"]
+[ext_resource type="Texture2D" uid="uid://balcmqwfat41h" path="res://Assets/Lvl 1/Rolly Polly/shivering.png" id="4_3d2lw"]
+[ext_resource type="Texture2D" uid="uid://crf4l0aybyxf8" path="res://Assets/message.png" id="4_3mewk"]
+[ext_resource type="FontVariation" uid="uid://ddc5nqyqc0km0" path="res://Assets/font.tres" id="5_8avh3"]
+
+[sub_resource type="GDScript" id="GDScript_3d2lw"]
+script/source = "extends StaticBody2D
+
+#set-up variables
+@export var item: InvItem
+@export var message: Node
+@export var item_name: String
+var player = null
+
+#don't want you to be able to pick up the item until you enter its collision shape
+func _ready() -> void:
+	item.name = item_name
+	if SaveManager.should_item_be_removed(item.name):
+		queue_free()
+	message.visible = false
+
+#once player is in range show pop up 
+func _on_interactable_area_body_entered(body):
+	if body.has_method(\"player\"):
+		player = body
+		message.visible = true
+
+#helper methods to perform button actions
+func player_collect():
+	player.collect(item)
+	# Update collected items list
+	SaveManager.current_save.collected_items.append(item.name)
+	# Save the player's ACTUAL inventory
+	SaveManager.current_save.player_inventory = player.inv.duplicate(true)
+	# Write to disk
+	SaveManager.save_game(SaveManager.current_slot, SaveManager.current_save)
+	queue_free()
+
+func _on_yes_pressed() -> void:
+	player_collect()
+	self.queue_free()
+
+func _on_no_pressed() -> void:
+	message.visible = false
+"
+
+[sub_resource type="Resource" id="Resource_3etvt"]
+script = ExtResource("2_3mewk")
+name = ""
+texture = ExtResource("3_8avh3")
+metadata/_custom_type_script = "uid://bmtdu2760xge8"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3etvt"]
+shader = ExtResource("3_3d2lw")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnnci"]
+atlas = ExtResource("4_3d2lw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n3w3"]
+atlas = ExtResource("4_3d2lw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo20j"]
+atlas = ExtResource("4_3d2lw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fp0b7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnnci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n3w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo20j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brxix"]
+size = Vector2(52, 51)
+
+[node name="siblings" type="StaticBody2D" node_paths=PackedStringArray("message")]
+script = SubResource("GDScript_3d2lw")
+item = SubResource("Resource_3etvt")
+message = NodePath("message")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_3etvt")
+position = Vector2(-1.90735e-06, -15)
+scale = Vector2(0.640625, 0.65625)
+sprite_frames = SubResource("SpriteFrames_fp0b7")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_brxix")
+
+[node name="message" type="Sprite2D" parent="."]
+position = Vector2(3, -243)
+scale = Vector2(0.78, 0.737024)
+texture = ExtResource("4_3mewk")
+
+[node name="text_body" type="RichTextLabel" parent="message"]
+offset_left = -359.0
+offset_top = -135.0
+offset_right = 362.0
+offset_bottom = 116.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_8avh3")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "You've found a scared, lost rolly-polly hatchling. Store for later?"
+scroll_active = false
+tab_size = 3
+shortcut_keys_enabled = false
+
+[node name="title" type="RichTextLabel" parent="message"]
+offset_left = -348.0
+offset_top = -209.0
+offset_right = 280.0
+offset_bottom = -160.0
+theme_override_fonts/normal_font = ExtResource("5_8avh3")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "You've picked up a message."
+scroll_active = false
+tab_size = 3
+shortcut_keys_enabled = false
+
+[node name="yes" type="Button" parent="message"]
+offset_left = -329.0
+offset_top = 131.0
+offset_right = -91.0
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 25
+text = "Yes"
+
+[node name="no" type="Button" parent="message"]
+offset_left = 22.0
+offset_top = 129.0
+offset_right = 262.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 25
+text = "No"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_interactable_area_body_entered"]
+[connection signal="pressed" from="message/yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="message/no" to="." method="_on_no_pressed"]

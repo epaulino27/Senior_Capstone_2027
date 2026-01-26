@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3v7b3k8ku0ce"]
+[gd_scene load_steps=7 format=3 uid="uid://c3v7b3k8ku0ce"]
 
 [ext_resource type="Script" uid="uid://dxak2dny2523x" path="res://Inventory/inv_ui.gd" id="1_s8fnp"]
+[ext_resource type="Resource" uid="uid://c6w24uubq8f2p" path="res://Inventory/player_inv.tres" id="2_b3ftj"]
 [ext_resource type="Texture2D" uid="uid://crf4l0aybyxf8" path="res://Assets/message.png" id="2_mnjyx"]
 [ext_resource type="PackedScene" uid="uid://ypy7dmmydy8q" path="res://Inventory/inv_slot_ui.tscn" id="3_b3ftj"]
 [ext_resource type="FontVariation" uid="uid://ddc5nqyqc0km0" path="res://Assets/font.tres" id="4_rw7s4"]
@@ -11,9 +12,12 @@
 z_index = 5
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 584.0
+offset_top = 323.0
+offset_right = 624.0
+offset_bottom = 363.0
 script = ExtResource("1_s8fnp")
+inv = ExtResource("2_b3ftj")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0

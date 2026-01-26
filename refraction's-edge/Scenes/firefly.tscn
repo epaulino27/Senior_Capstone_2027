@@ -597,14 +597,14 @@ energy = 0.45
 texture = ExtResource("10_7swol")
 
 [node name="PointLight2D3" type="PointLight2D" parent="."]
-position = Vector2(1, 10)
-scale = Vector2(8.21154, 5.89798)
-energy = 0.35
+position = Vector2(-1, 5)
+scale = Vector2(6.91406, 4.01356)
+energy = 0.9
 texture = ExtResource("10_7swol")
 
 [node name="PointLight2D4" type="PointLight2D" parent="."]
-position = Vector2(-5, -37)
-scale = Vector2(12.9654, 10.5191)
+position = Vector2(4.2768, -0.347195)
+scale = Vector2(8.9488, 4.9477)
 energy = 0.35
 texture = ExtResource("10_7swol")
 

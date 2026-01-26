@@ -13,6 +13,15 @@ config_version=5
 config/name="Refraction's Edge"
 config/features=PackedStringArray("4.4", "Mobile")
 
+[audio]
+
+buses/default_bus_layout=""
+
+[autoload]
+
+SaveManager="*res://Save System/SaveManager.gd"
+SaveScreen="*res://Save System/save_screen.gd"
+
 [input]
 
 W={

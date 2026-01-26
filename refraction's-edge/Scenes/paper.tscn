@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnuecq6ug4mcf"]
+[gd_scene load_steps=7 format=3 uid="uid://dnuecq6ug4mcf"]
 
 [ext_resource type="Script" uid="uid://duwahr6plwiyw" path="res://Scripts/paper.gd" id="1_3e1dg"]
 [ext_resource type="Resource" uid="uid://bmev8ycelvb7f" path="res://Inventory/items/paper.tres" id="2_v68uc"]
@@ -8,8 +8,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v68uc"]
 size = Vector2(141, 64)
-
-[sub_resource type="GDScript" id="GDScript_aqslg"]
 
 [node name="Paper" type="StaticBody2D" node_paths=PackedStringArray("message")]
 script = ExtResource("1_3e1dg")
@@ -47,7 +45,6 @@ The handwriting seems to indicate it was written by a child. Take note?"
 scroll_active = false
 tab_size = 3
 shortcut_keys_enabled = false
-script = SubResource("GDScript_aqslg")
 
 [node name="title" type="RichTextLabel" parent="message"]
 offset_left = -348.0
@@ -61,7 +58,6 @@ text = "You've picked up a message."
 scroll_active = false
 tab_size = 3
 shortcut_keys_enabled = false
-script = SubResource("GDScript_aqslg")
 
 [node name="close" type="Button" parent="message"]
 self_modulate = Color(1, 1, 1, 0)

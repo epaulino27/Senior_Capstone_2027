@@ -1,31 +1,30 @@
 extends Control
 
-#load and define global variables for easier usage
-@onready var inv: Inv =  preload("res://Inventory/player_inv.tres")
+#get/set variables to be used later
+@export var inv: Inv
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 var is_open = false
 
-#on start inventory is closed and refreshed
+#on start update all slots using helper function
 func _ready():
 	inv.update.connect(update_slots)
 	update_slots()
-	close()	
-	
-#checks each slot and calls update to ensure num of items and sprite is correct
+	close() 
+
+#helper function, goes through each slot and runs update function from the slot ui so everythings visually up to date
 func update_slots():
 	for i in range(min(inv.slots.size(), slots.size())):
 		slots[i].update(inv.slots[i])
 
-#called every frame/sec, closes and opens inventory on pressing I
+#when player presses I the inventory will open/close
 func _process(_delta):
 	if Input.is_action_just_pressed("I"):
 		if is_open:
 			close()
 		else:
 			open()
-			
-#helper functions
 
+#basic helper functions to adjust visibility & bool for opening adn closing inventory
 func open():
 	visible = true
 	is_open = true

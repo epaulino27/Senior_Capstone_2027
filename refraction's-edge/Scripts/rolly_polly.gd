@@ -1,33 +1,45 @@
 extends CharacterBody2D
-
+class_name RollyPollyNPC
 #define npc variables
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var dialogue_label = $message/text_body
+@onready var start = $"../Portals/start"
+@onready var end = $"../Portals/end"
 @onready var dialogue = $message
 @onready var state := "idle"
 @onready var movement_speed = 900
+@export var inv: Inv
+var talked = false
 var player = null
 var sleep_counter := 0.0
 var spawn_points = []
-var spawn_index := 0
+var spawn_index
 var current_anim := ""
 var fearful_dialogue = ["Don't hurt me!", "Begone devil of light!", "Leave me alone!", "You better not get closer o-or you'll be sorry!", "My mom will be here any minute so you better leave!"]
 
 #on start set visibility and spawn points for chase sequence
 func _ready():
+	print("PLAYER INV:", inv)
 	dialogue.visible = false
 	spawn_points = [
-		Vector2(-1500, position.y -40), #the start location, superficial, overwritten elsewhere, but needed for rest to work
+		Vector2(500, position.y + 5), 
 		Vector2(-1565, position.y - 690),
 		Vector2(1400, position.y - 1820),
 		Vector2(-1500,position.y - 1820)
 	]
+	if SaveManager.current_save.rolly_polly_state == "roll_left" || "roll_right":
+		state ="idle"
+	spawn_index = SaveManager.current_save.rolly_polly_spawn
+	if SaveManager.current_save.rolly_polly_position != Vector2.ZERO:
+		global_position = SaveManager.current_save.rolly_polly_position
+	else:
+		global_position = spawn_points[spawn_index]
 
 #play the animation used in tandem with state
-func play_anim(name:String):
-	if current_anim != name:
-		current_anim = name
-		animated_sprite.play(name)
+func play_anim(anim_name:String):
+	if current_anim != anim_name:
+		current_anim = anim_name
+		animated_sprite.play(anim_name)
 		
 #called every frame, handles states
 func _physics_process(delta):
@@ -50,6 +62,7 @@ func _physics_process(delta):
 		"despawn":
 			play_anim("idle")
 			visible = false
+			await get_tree().process_frame
 			state = "respawn"
 		"respawn":
 			spawn_index = (spawn_index + 1) % spawn_points.size()
@@ -59,15 +72,30 @@ func _physics_process(delta):
 		"fearful":
 			play_anim("shivering")
 		"talk":
-			#needs different front facing sprite but having put it in yet
+			#needs different front facing sprite but having put it in yet :(
 			play_anim("idle")
 			dialogue.visible = true
-			dialogue_label.text = "...oh you have my poster? I thought you were a monster at first Mrs. [insert small bit of lore here] [insert quest story here]"
+			talked = true
+			player.inv.remove("paper")
+			dialogue_label.text = "...my ad? Wait your not a monster, but your so....bright. Are you here to help? My siblings, their stuck in the broken portal, I can't fix it until their all out. There are 9."
+		"finished":
+			play_anim("idle")
+			player.inv.remove("babies")
+			start.end_target = end.get_path()
+			start.target = end
+			dialogue.visible = true
+			if talked == true:
+				dialogue_label.text = "You found my siblings!!! Thank you so much! I was able to fix the portals while you were gone. You should be able to get up higher like you wanted now!"
+			else:
+				dialogue_label.text = "Who are you!? Oh wait...you found my siblings! Thank you so much! They were lost in the portals but I was too scared to find them myself. But now that their out of that maze I can activate teh fix I made for the portal. you can beam your way all the way up if you'd like."
+			
 
 #when the character gets close to the rolly-polly
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	#first and second roll logic
+	#first and second roll logicaaa
 	if body.has_method("player"):
+		if body.inv.get_amount("babies") >= 9:
+			state = "finished"
 		if state == "idle":
 			player = body
 			state = "ball_up"

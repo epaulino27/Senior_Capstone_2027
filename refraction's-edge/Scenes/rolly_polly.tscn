@@ -2,7 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dqqi21ibq0a5v" path="res://Scripts/rolly_polly.gd" id="1_5gjs6"]
 [ext_resource type="Texture2D" uid="uid://crf4l0aybyxf8" path="res://Assets/message.png" id="1_5kojr"]
-[ext_resource type="Shader" uid="uid://w0o3rdpk173x" path="res://Scripts/lvl_2.gdshader" id="2_0j1t5"]
+[ext_resource type="Shader" uid="uid://w0o3rdpk173x" path="res://Scripts/lvl_1_npc.gdshader" id="2_0j1t5"]
+[ext_resource type="Resource" uid="uid://c6w24uubq8f2p" path="res://Inventory/player_inv.tres" id="2_5gjs6"]
 [ext_resource type="FontVariation" uid="uid://ddc5nqyqc0km0" path="res://Assets/font.tres" id="2_yvwc7"]
 [ext_resource type="Texture2D" uid="uid://pshbajoswa81" path="res://Assets/Lvl 1/Rolly Polly/ball_up.png" id="3_k32wc"]
 [ext_resource type="Texture2D" uid="uid://d08utyl4myjs8" path="res://Assets/Lvl 1/Rolly Polly/idle.png" id="4_v87cg"]
@@ -204,12 +205,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j1t5"]
-size = Vector2(625.5, 292)
-
-[sub_resource type="GDScript" id="GDScript_hbk6g"]
+size = Vector2(309, 163)
 
 [node name="Rolly-Polly" type="CharacterBody2D"]
 script = ExtResource("1_5gjs6")
+inv = ExtResource("2_5gjs6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -227,8 +227,7 @@ speed_scale = 0.8
 position = Vector2(17, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(-15.25, 6)
+position = Vector2(-0.5, 3.5)
 shape = SubResource("RectangleShape2D_0j1t5")
 
 [node name="message" type="Sprite2D" parent="."]
@@ -254,7 +253,6 @@ text = "Don't hurt me!"
 scroll_active = false
 tab_size = 3
 shortcut_keys_enabled = false
-script = SubResource("GDScript_hbk6g")
 metadata/_edit_use_anchors_ = true
 
 [node name="title" type="RichTextLabel" parent="message"]
@@ -270,7 +268,6 @@ text = "Rolly-Polly"
 scroll_active = false
 tab_size = 3
 shortcut_keys_enabled = false
-script = SubResource("GDScript_hbk6g")
 metadata/_edit_use_anchors_ = true
 
 [node name="button" type="Button" parent="message"]
