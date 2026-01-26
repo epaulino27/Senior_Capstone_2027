@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://i6cqycgjfaby"
+path="res://.godot/imported/classical-piano-background-music-372077.mp3-631f28c056d63bb130f3361153bf5166.mp3str"
+
+[deps]
+
+source_file="res://Assets/Lvl 1/classical-piano-background-music-372077.mp3"
+dest_files=["res://.godot/imported/classical-piano-background-music-372077.mp3-631f28c056d63bb130f3361153bf5166.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

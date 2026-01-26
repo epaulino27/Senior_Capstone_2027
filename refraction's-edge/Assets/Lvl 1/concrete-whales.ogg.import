@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://f4bff4gft8ab"
+path="res://.godot/imported/concrete-whales.ogg-dc110369e6da1b8e1a0741398648be6f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Lvl 1/concrete-whales.ogg"
+dest_files=["res://.godot/imported/concrete-whales.ogg-dc110369e6da1b8e1a0741398648be6f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
