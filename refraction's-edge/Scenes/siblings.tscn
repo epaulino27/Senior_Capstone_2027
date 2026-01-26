@@ -50,8 +50,8 @@ func _on_no_pressed() -> void:
 
 [sub_resource type="Resource" id="Resource_3etvt"]
 script = ExtResource("2_3mewk")
-name = ""
 texture = ExtResource("3_8avh3")
+category = "baby"
 metadata/_custom_type_script = "uid://bmtdu2760xge8"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3etvt"]
@@ -109,18 +109,18 @@ position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_brxix")
 
 [node name="message" type="Sprite2D" parent="."]
-position = Vector2(3, -243)
-scale = Vector2(0.78, 0.737024)
+position = Vector2(-6.499987, -139.86382)
+scale = Vector2(0.44125, 0.3518115)
 texture = ExtResource("4_3mewk")
 
 [node name="text_body" type="RichTextLabel" parent="message"]
-offset_left = -359.0
-offset_top = -135.0
-offset_right = 362.0
-offset_bottom = 116.0
+offset_left = -338.8102
+offset_top = -114.08435
+offset_right = 304.81583
+offset_bottom = 99.09799
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("5_8avh3")
-theme_override_font_sizes/normal_font_size = 26
+theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "You've found a scared, lost rolly-polly hatchling. Store for later?"
 scroll_active = false
@@ -142,16 +142,16 @@ shortcut_keys_enabled = false
 
 [node name="yes" type="Button" parent="message"]
 offset_left = -329.0
-offset_top = 131.0
-offset_right = -91.0
+offset_top = 90.57071
+offset_right = -105.38248
 offset_bottom = 189.0
 theme_override_font_sizes/font_size = 25
 text = "Yes"
 
 [node name="no" type="Button" parent="message"]
 offset_left = 22.0
-offset_top = 129.0
-offset_right = 262.0
+offset_top = 84.88583
+offset_right = 254.95749
 offset_bottom = 190.0
 theme_override_font_sizes/font_size = 25
 text = "No"
