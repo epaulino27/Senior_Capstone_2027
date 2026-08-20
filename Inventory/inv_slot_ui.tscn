@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://ypy7dmmydy8q"]
+
+[ext_resource type="Script" uid="uid://c71yx1q0ojje6" path="res://Inventory/inv_slot_ui.gd" id="1_mwfa6"]
+[ext_resource type="Texture2D" uid="uid://dsn3mhtiepwlu" path="res://Assets/General/option.png" id="2_q1ng7"]
+[ext_resource type="FontVariation" uid="uid://ddc5nqyqc0km0" path="res://Assets/General/font.tres" id="3_q1ng7"]
+
+[node name="Inventory ui Slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(120, 120)
+offset_right = 74.0
+offset_bottom = 72.0
+script = ExtResource("1_mwfa6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(47, 52)
+scale = Vector2(0.226648, 0.26647)
+texture = ExtResource("2_q1ng7")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]
+
+[node name="number" type="Label" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 9.0
+offset_right = 45.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_q1ng7")
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
