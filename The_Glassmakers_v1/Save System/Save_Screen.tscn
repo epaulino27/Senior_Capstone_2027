@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dop1esujqnaap"]
+
+[ext_resource type="Script" uid="uid://cf6k1gl7mi4yn" path="res://Save System/save_screen.gd" id="1_rhe88"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_rhe88")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = -267.0
+offset_top = -179.0
+offset_right = 279.0
+offset_bottom = -131.0
+text = "Save Slot 1"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = -268.0
+offset_top = -26.0
+offset_right = 270.0
+offset_bottom = 18.0
+text = "Save Slot 2"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = -262.0
+offset_top = 131.0
+offset_right = 268.0
+offset_bottom = 172.0
+text = "Save Slot 3"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
