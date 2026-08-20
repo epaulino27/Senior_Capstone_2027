@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdrsxxbo1utjn"]
+
+[ext_resource type="Script" uid="uid://dwph7k00ee1jo" path="res://Scripts/item_base.gd" id="1_41c10"]
+[ext_resource type="Resource" uid="uid://bkitf4po3ykmm" path="res://Inventory/items/worker.tres" id="2_oqmp5"]
+[ext_resource type="Shader" uid="uid://8fc0bnqkfir5" path="res://Scripts/lvl_2NPC.gdshader" id="3_oqmp5"]
+[ext_resource type="Texture2D" uid="uid://balcmqwfat41h" path="res://Assets/Lvl 1/Rolly Polly/shivering.png" id="4_3qveh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3etvt"]
+shader = ExtResource("3_oqmp5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnnci"]
+atlas = ExtResource("4_3qveh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n3w3"]
+atlas = ExtResource("4_3qveh")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo20j"]
+atlas = ExtResource("4_3qveh")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fp0b7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnnci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n3w3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo20j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brxix"]
+size = Vector2(127, 98.5)
+
+[node name="worker" type="Area2D"]
+script = ExtResource("1_41c10")
+item = ExtResource("2_oqmp5")
+pickup_lines = ["You've found a worker!", "Put him in your inventory?"]
+lore_lines = [null, null]
+metadata/_custom_type_script = "uid://dwph7k00ee1jo"
+
+[node name="NPCSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_3etvt")
+position = Vector2(-1.90735e-06, -15)
+scale = Vector2(0.640625, 0.65625)
+sprite_frames = SubResource("SpriteFrames_fp0b7")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_brxix")

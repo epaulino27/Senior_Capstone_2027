@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0tkbcslpo126"]
+
+[ext_resource type="Script" uid="uid://c3gxcskafl7dx" path="res://Scripts/dialogue_box.gd" id="1_kyvu4"]
+[ext_resource type="FontVariation" uid="uid://ddc5nqyqc0km0" path="res://Assets/General/font.tres" id="3_hg80k"]
+
+[node name="DialogueBox" type="CanvasLayer"]
+script = ExtResource("1_kyvu4")
+
+[node name="base_color" type="ColorRect" parent="."]
+offset_left = -26.0
+offset_top = 441.0
+offset_right = 14.0
+offset_bottom = 481.0
+scale = Vector2(47.215073, 6.0845723)
+color = Color(0.72156864, 0.72156864, 0.72156864, 1)
+
+[node name="strip" type="ColorRect" parent="."]
+offset_left = -26.0
+offset_top = 448.0
+offset_right = 14.0
+offset_bottom = 488.0
+scale = Vector2(47.559998, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="Speaker" type="Label" parent="."]
+offset_left = 218.0
+offset_top = 455.0
+offset_right = 1260.0
+offset_bottom = 483.0
+theme_override_fonts/font = ExtResource("3_hg80k")
+theme_override_font_sizes/font_size = 20
+
+[node name="Content" type="RichTextLabel" parent="."]
+offset_left = 213.0
+offset_top = 504.0
+offset_right = 1258.0
+offset_bottom = 681.9999
+theme_override_colors/default_color = Color(0, 0, 0, 1)

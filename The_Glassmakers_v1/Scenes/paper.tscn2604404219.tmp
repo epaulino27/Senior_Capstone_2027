@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnuecq6ug4mcf"]
+
+[ext_resource type="Script" uid="uid://dwph7k00ee1jo" path="res://Scripts/item_base.gd" id="1_c7gsp"]
+[ext_resource type="Texture2D" uid="uid://bl6igi42tof7j" path="res://Assets/Lvl 1/fallen_paper_bw.png" id="3_pd2jm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v68uc"]
+size = Vector2(141, 64)
+
+[node name="Paper" type="Area2D"]
+script = ExtResource("1_c7gsp")
+metadata/_custom_type_script = "uid://dwph7k00ee1jo"
+
+[node name="NPCSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_pd2jm")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+scale = Vector2(1.4799998, 1.8000013)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_v68uc")
